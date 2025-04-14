@@ -1,0 +1,26 @@
+---
+title: "Prezentacja"
+subtitle: "Inwestowanie na Warszawskiej Giełdzie Papierów Wartościowych to zły pomysł"
+author: "Karolina Joachimczyk"
+date: "`r Sys.Date()`"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Giełda Papierów Wartościowych w Warszawie
+
+Giełda Papierów Wartościowych w Warszawie odpowiada za obrót giełdowy najważniejszych indeksów spółek giełdowych oraz obligacji i instrumentów pochodnych notowanych w Polsce. Instytucja nadzorowana jest przez Komisję Nadzoru Finansowego, a jej kapitalizacja wynosi ponad 1,5 bln zł.
+
+Kondycja największego idneksu spółek giełdowych WIG20
+//dodać dane z analizą
+
+## Kondycja pozostałych indeksów oraz instrumentów pochodnych
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+
