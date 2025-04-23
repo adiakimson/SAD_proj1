@@ -1,26 +1,77 @@
 ---
-title: "Prezentacja"
-subtitle: "Inwestowanie na Warszawskiej Giełdzie Papierów Wartościowych to zły pomysł"
-author: "Karolina Joachimczyk"
-date: "`r Sys.Date()`"
-output: ioslides_presentation
+title: "Inwestowanie na Warszawskiej Giełdzie Papierów Wartościowych to dobry pomysł"
+author: "Karolina Joachimczyk, 303817"
+output:
+  ioslides_presentation:
+    css: styles.css
+encoding: UTF-8
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+```{r Wczytanie danych, echo=FALSE, message=FALSE, warning=FALSE, fig.width=10, fig.height=6, out.width="85%"}
+
+library(readr)
+library(ggplot2)
+
+# Wczytanie danych z pliku (plik CSV musi być w tym samym folderze co ten Rmd!)
+wig20_data <- read_csv("wig20_d.csv")
+tbsp_data <- read_csv("tbsp_d.csv")
+
+# Zamiana na zwykły data frame
+wig20_data <- as.data.frame(wig20_data)
+tbsp_data <- as.data.frame(tbsp_data)
+
+# Konwersja kolumny Data na format daty
+wig20_data$Data <- as.Date(wig20_data$Data)
+tbsp_data$Data <- as.Date(tbsp_data$Data)
+
 ```
 
-## Giełda Papierów Wartościowych w Warszawie
+## <span class="naglowek">Wykres najważniejszego indeksu spółek WIG20</span>
 
-Giełda Papierów Wartościowych w Warszawie odpowiada za obrót giełdowy najważniejszych indeksów spółek giełdowych oraz obligacji i instrumentów pochodnych notowanych w Polsce. Instytucja nadzorowana jest przez Komisję Nadzoru Finansowego, a jej kapitalizacja wynosi ponad 1,5 bln zł.
+```{r Wykres analizy WIG20, echo=FALSE, message=FALSE, warning=FALSE, fig.width=10, fig.height=6, out.width="85%"}
 
-Kondycja największego idneksu spółek giełdowych WIG20
-//dodać dane z analizą
+ggplot(wig20_data, aes(x = Data, y = Zamkniecie)) +
+  geom_line(color = "blue") +
+  labs(
+    title = "WIG20 - Ceny Zamknięcia",
+    x = "Data",
+    y = "Cena Zamknięcia"
+  ) +
+  theme_minimal() +  
+  theme(
+    axis.text = element_text(size = 20),  
+    axis.title = element_text(size = 20),
+    plot.title = element_text(size = 20)
+  )
 
-## Kondycja pozostałych indeksów oraz instrumentów pochodnych
-
-```{r cars, echo = TRUE}
-summary(cars)
 ```
 
+<div style="text-align: justify; font-size: 80%; line-height: 1.5">
+Największy indeks spółek odzwierciedla podejście inwestora do kondycji rynku.
+Obserwowany trend jest zdecydowanie wzrostowy.
+</div>
+
+## <span class="naglowek">Wykres najważniejszego indeksu obligacji TBSP</span>
+
+```{r Wykres analizy TBSP, echo=FALSE, warning=FALSE, fig.width=10, fig.height=6, out.width="85%"}
+
+ggplot(tbsp_data, aes(x = Data, y = Zamkniecie)) +
+  geom_line(color = "blue") +
+  labs(
+    title = "TBSP - Ceny Zamknięcia",
+    x = "Data",
+    y = "Cena Zamknięcia"
+  ) + 
+  theme_minimal() +
+  theme(
+    axis.text = element_text(size = 20),  
+    axis.title = element_text(size = 20),
+    plot.title = element_text(size = 20)
+  )
+
+```
+
+<div style="text-align: justify; font-size: 80%; line-height: 1.5">
+Wzrost cen zarówno najważniejszego indeksu spółek giełdowych, jak i indeksu obligacji skarbowych świadczy o stabilności państwa i rozwoju jego gospodarki.
+</div>
 
